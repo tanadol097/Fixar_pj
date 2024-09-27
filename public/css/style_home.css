@@ -1,0 +1,350 @@
+/* Importing fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@500&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Kanit:wght@100;200;300&display=swap");
+
+/* Global styles */
+* {
+    font-family: "Kanit", "Poppins", sans-serif; /* ใช้ฟอนต์ Kanit เป็นหลัก และ Poppins เป็นสำรอง */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* แนะนำให้ใช้เพื่อให้จัดการขนาดได้ดีขึ้น */
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Mobile (default) */
+.col {
+    width: 100%; /* ใช้พื้นที่เต็มหน้าจอบนมือถือ */
+}
+
+/* Tablet (577px and up) */
+@media screen and (min-width: 577px) {
+    .col {
+        width: 50%; /* ใช้ 50% ของความกว้างใน tablet */
+    }
+}
+
+/* Desktop (1024px and up) */
+@media screen and (min-width: 1024px) {
+    .row {
+        display: flex;
+        justify-content: center; 
+        flex-wrap: wrap; 
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+    }
+    .col-1 {
+        width: 25%; /* ใช้ 25% ของพื้นที่ใน desktop */
+    }
+    .col-2 {
+        width: 45%;
+    }
+    .col-3 {
+        width: 90%;
+    }
+    .col-4 {
+        width: 33.33%;
+    }
+}
+/********************** user  ***********************/
+
+#sn{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 100%;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    max-width: 300px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 4px;
+    right: 0;
+    overflow-x: auto;
+    /* Handle overflow */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+}
+
+.user-pic {
+    cursor: pointer;
+
+}
+section{
+    display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        text-align: center;
+        color: #999;
+        font-weight: bold;
+}
+
+/* Body and Navbar */
+body {
+    background-color: #ffffff !important;
+    color: #ffffff; /* หากต้องการข้อความใน body เป็นสีขาว */
+}
+
+.navbar, .site-footer {
+    background-color: #DC5F00 !important;
+    color: #ffffff !important; /* กำหนดข้อความใน navbar และ footer เป็นสีขาว */
+}
+
+/* หากต้องการปรับข้อความเฉพาะใน navbar */
+.navbar .nav-link {
+    color: #ffffff !important; /* ข้อความในลิงก์ navbar เป็นสีขาว */
+}
+
+/* หากต้องการปรับข้อความเฉพาะใน footer */
+.site-footer a {
+    color: #dedede !important; /* ข้อความในลิงก์ footer เป็นสีขาว */
+}
+
+/* Search Bar Styles */
+.search-bar {
+    background-color: white;
+    border-radius: 50px;
+    padding: 5px 15px;
+    width: 300px;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .search-bar input {
+    border: none;
+    outline: none;
+}
+
+.navbar .search-bar input::placeholder {
+    color: #999;
+}
+
+.navbar .search-bar button {
+    background: transparent;
+    border: none;
+    color: #D2691E;
+}
+
+/* Navigation Links */
+.nav-link {
+    color: #FDF7E4;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+}
+/* Button Styles */
+.btn-collection {
+    background-color: #D2691E;
+    color: white;
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-collection:hover {
+    background-color: #C76114;
+}
+
+.site-footer {
+    background-color: #f8f9fa;
+    padding: 45px 0 20px;
+    font-size: 14px;
+}
+
+.site-footer h6 {
+    color: #343a40;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.site-footer ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.site-footer ul li {
+    margin-bottom: 10px;
+}
+
+.site-footer ul li a {
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.site-footer ul li a:hover {
+    color: #343a40;
+    text-decoration: underline;
+}
+
+.copyright-text {
+    margin: 0;
+    color: #6c757d;
+}
+
+.social-icons {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.social-icons li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-icons li a {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.social-icons li a:hover {
+    color: #343a40;
+}
+
+.card-custom {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-custom img {
+    width: 100%;
+    height: 250px;
+    /* กำหนดความสูงของรูปภาพให้เท่ากัน */
+    object-fit: cover;
+    /* ทำให้รูปภาพเต็มพื้นที่ของการ์ดโดยไม่บิดเบี้ยว */
+}
+
+.card-custom .card-body {
+    flex-grow: 1;
+}
+
+.site-footer {
+    background-color: #f8f9fa;
+    padding: 45px 0 20px;
+    font-size: 14px;
+}
+
+.site-footer h6 {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.site-footer ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.site-footer ul li {
+    margin-bottom: 10px;
+}
+
+.site-footer ul li a {
+    color: #6c757d;
+    text-decoration: none;
+}
+
+.site-footer ul li a:hover {
+    color: #343a40;
+    text-decoration: underline;
+}
+
+.copyright-text {
+    margin: 0;
+    color: #ffffff;
+}
+
+.social-icons {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.social-icons li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-icons li a {
+    color: #6c757d;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.social-icons li a:hover {
+    color: #343a40;
+}
+
+.navbar-brand img {
+    height: 60px;
+    /* กำหนดความสูงที่คุณต้องการ */
+    width: auto;
+    /* ปรับความกว้างโดยอัตโนมัติตามสัดส่วน */
+}
+
+.carousel-item img {
+    border-radius: 15px;
+    /* ปรับค่าให้เหมาะสมตามที่ต้องการ */
+}
+
+h2,
+h3 {
+    font-weight: bold
+}
+
+.card {
+    /* กำหนดความกว้างคงที่ของการ์ด */
+    height: 100%;
+    /* ให้การ์ดเต็มความสูง */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* จัดวาง footer ที่ด้านล่าง */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* การเปลี่ยนแปลงที่นุ่มนวล */
+}
+
+/* การเปลี่ยนแปลงเมื่อ hover */
+.card:hover {
+    transform: translateY(-10px);
+    /* ยกการ์ดขึ้นเล็กน้อยเมื่อ hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* เพิ่มเงาเมื่อ hover */
+}

@@ -86,7 +86,10 @@ class PageController extends Controller
         return view('profile_em5'); 
     }
 
-
+    public function home2()
+    {
+        return view('home2'); 
+    }
 
 
 }

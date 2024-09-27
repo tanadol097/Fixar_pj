@@ -4,7 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\PageController;
-
+use App\Http\Controllers\SearchController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -35,7 +35,9 @@ Route::get('/', function () {
     ]);
 });
 
+
 Route::get('/home', [PageController::class, 'home'])->name('home');
+Route::get('/home2', [PageController::class, 'home2'])->name('home2');
 Route::get('/home_em', [PageController::class, 'home_em'])->name('home_em');
 Route::get('/ourservices', [PageController::class, 'ourservices'])->name('ourservices');
 
@@ -59,3 +61,6 @@ Route::get('/profile_em2', [PageController::class, 'profile_em2'])->name('profil
 Route::get('/profile_em3', [PageController::class, 'profile_em3'])->name('profile_em3');
 Route::get('/profile_em4', [PageController::class, 'profile_em4'])->name('profile_em4');
 Route::get('/profile_em5', [PageController::class, 'profile_em5'])->name('profile_em5');
+
+
+Route::get('/search', [SearchController::class, 'search'])->name('search');

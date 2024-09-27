@@ -81,8 +81,25 @@
           <button>รถมอเตอร์ไซ</button>
           <button>รถไฟฟ้า</button>
       </div>
-
+    
+      <script>
        
+        const buttons = document.querySelectorAll('.categories button');
+
+        // วนลูปเพิ่ม event listener ให้แต่ละปุ่ม
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // ลบคลาส 'active' จากปุ่มทั้งหมดก่อน
+                buttons.forEach(btn => btn.classList.remove('active'));
+                
+                // เพิ่มคลาส 'active' ให้ปุ่มที่ถูกกด
+                button.classList.add('active');
+            });
+        });
+    </script>
+
+
+      
        
 
         <section class="technicians">
