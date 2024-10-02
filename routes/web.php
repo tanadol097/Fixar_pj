@@ -1,18 +1,18 @@
 <?php
 
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use App\Http\Controllers\PageController;
-use App\Http\Controllers\SearchController;
+
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\RepairRequestController;
+use App\Http\Controllers\RepairController;
+
+
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return view('welcome');
 });
 
 Route::middleware([
@@ -21,46 +21,106 @@ Route::middleware([
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return view('dashboard');
     })->name('dashboard');
 });
 
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::get('/admin/main',[AdminController::class,'main']);
+Route::get('/admin/repair',[AdminController::class,'index']);
+
+// เส้นทางสำหรับแสดงฟอร์มลงทะเบียน
+Route::get('/Employee/register', [EmployeeController::class, 'showRegistrationForm'])->name('employee.register.form');
+
+// เส้นทางสำหรับจัดการการลงทะเบียน
+Route::post('/Employee/register', [EmployeeController::class, 'register'])->name('employee.register');
+
+// Route สำหรับหน้าเข้าสู่ระบบ
+Route::get('/Employee/login', [EmployeeController::class, 'showLoginForm'])->name('login');
+Route::post('/Employee/login', [EmployeeController::class, 'login']); // Route สำหรับเข้าสู่ระบบ
+Route::get('/Employee/dashboard', [EmployeeController::class, 'dashboard'])->name('employee.dashboard'); // Route สำหรับแดชบอร์ด
+
+// Route สำหรับหน้า Repair
+Route::get('/admin/repair', [AdminController::class, 'showEmployees'])->name('admin.repair');
+
+// แก้ไขพนักงาน
+Route::get('/admin/employees/{id}/edit', [AdminController::class, 'edit'])->name('admin.edit');
+Route::put('/admin/employees/{id}', [AdminController::class, 'update'])->name('admin.update');
+
+// ลบพนักงาน
+Route::delete('/admin/employees/{id}', [AdminController::class, 'destroy'])->name('admin.delete');
 
 
-Route::get('/home', [PageController::class, 'home'])->name('home');
-Route::get('/home2', [PageController::class, 'home2'])->name('home2');
-Route::get('/home_em', [PageController::class, 'home_em'])->name('home_em');
-Route::get('/ourservices', [PageController::class, 'ourservices'])->name('ourservices');
+// เส้นทางสำหรับการเข้าสู่ระบบ
+Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [UserController::class, 'login']);
+
+// เส้นทางสำหรับการลงทะเบียน
+Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [UserController::class, 'register']);
+
+// เส้นทางสำหรับหน้าแรก
+Route::get('/home', function () {
+    return view('home'); // ตรวจสอบให้แน่ใจว่าวิวชื่อ 'home' ถูกต้อง
+})->name('home');
+
+Route::get('/home', [UserController::class, 'dashboard'])->name('home'); // เพิ่มเส้นทางไปยังแดชบอร์ดของผู้ใช้
+
+// Route สำหรับบริการของเรา
+Route::get('/services', function () {
+    return view('services'); // เปลี่ยนชื่อ 'services' เป็นชื่อไฟล์ Blade ที่คุณสร้างขึ้นสำหรับหน้า "บริการของเรา"
+})->name('services');
+
+// เส้นทางสำหรับออกจากระบบ
+// Route::post('/logout', function () {
+//     Auth::logout();
+//     return redirect('/login'); // เปลี่ยนเส้นทางไปยังหน้าเข้าสู่ระบบ
+// })->name('logout');
 
 
-
-Route::get('/register_em', [PageController::class, 'register_em'])->name('register_em');
-Route::get('/register_user', [PageController::class, 'register_user'])->name('register_user');
-
-
-
-Route::get('/booking_em1', [PageController::class, 'booking_em1'])->name('booking_em1');
-Route::get('/booking_em2', [PageController::class, 'booking_em2'])->name('booking_em2');
-Route::get('/booking_em3', [PageController::class, 'booking_em3'])->name('booking_em3');
-Route::get('/booking_em4', [PageController::class, 'booking_em4'])->name('booking_em4');
-Route::get('/booking_em5', [PageController::class, 'booking_em5'])->name('booking_em5');
-Route::get('/booking_success', [PageController::class, 'booking_success'])->name('booking_success');
+// Route สำหรับแสดงฟอร์มลงทะเบียน
+Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
+// Route สำหรับจัดการการลงทะเบียน
+Route::post('/register', [UserController::class, 'register']);
 
 
-Route::get('/profile_em1', [PageController::class, 'profile_em1'])->name('profile_em1');
-Route::get('/profile_em2', [PageController::class, 'profile_em2'])->name('profile_em2');
-Route::get('/profile_em3', [PageController::class, 'profile_em3'])->name('profile_em3');
-Route::get('/profile_em4', [PageController::class, 'profile_em4'])->name('profile_em4');
-Route::get('/profile_em5', [PageController::class, 'profile_em5'])->name('profile_em5');
+// Route::group(['middleware' => ['auth', 'role:admin']], function () {
+//     Route::get('/admin/dashboard', [AdminController::class, 'index']);
+// });
 
+Route::get('/booking', [ServicesController::class, 'showBookTechnician'])->name('book');
+Route::get('/report', [ServicesController::class, 'showRepairRequest'])->name('repair');
 
-Route::get('/search', [SearchController::class, 'search'])->name('search');
+// Route สำหรับการจองช่าง
+Route::get('/book-technician', [UserController::class, 'showTechnicians'])->name('book-technician');
+
+// Route สำหรับหน้าแสดงรายละเอียดการจองช่าง
+Route::get('/bookdetail/{id}', action: [UserController::class, 'bookTechnician'])->name('bookdetail');
+
+// Route สำหรับยืนยันการจองช่าง
+Route::post('/confirm-booking', [UserController::class, 'confirmBooking'])->name('confirmBooking');
+
+Route::post('/report', [RepairRequestController::class, 'store'])->name('repair.request.store');
+
+// เส้นทางสำหรับการแจ้งซ่อม
+// Route::get('/repair/history', [RepairController::class, 'showRepairHistory'])->name('repair.history');
+
+Route::get('/repair/history', [UserController::class, 'repairHistory'])->name('repair.history');
+
+Route::get('/repair/review/{id}', [UserController::class, 'showReviewForm'])->name('review');
+Route::post('/repair/review/{id}', [UserController::class, 'submitReview'])->name('submitReview');
+
+Route::get('/employee/repairRequests', [EmployeeController::class, 'showRepairRequests'])->name('employee.repairRequests');
+
+Route::get('/employee/repairRequests/accept/{id}', [EmployeeController::class, 'acceptRequest'])->name('employee.acceptRequest');
+
+Route::get('/employee/accept/{id}', [EmployeeController::class, 'acceptRequest'])->name('employee.acceptRequest');
+Route::post('/employee/confirm', [EmployeeController::class, 'confirmRequest'])->name('employee.confirmRequest');
+
+// Route สำหรับแสดงตารางงาน
+Route::get('/employee/table', [EmployeeController::class, 'showAcceptedRequests'])->name('employee.showAcceptedRequests');
+Route::get('/employee/accepted-requests', [EmployeeController::class, 'showAcceptedRequests'])->name('employee.acceptedRequests');
+
+// Route สำหรับแสดงประวัติการแจ้งซ่อม
+Route::get('/admin/table', [AdminController::class, 'showAcceptedRequests'])->name('admin.repairRequests');
+

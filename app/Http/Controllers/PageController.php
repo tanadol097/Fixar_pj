@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
 
 use Illuminate\Http\Request;
 
@@ -15,6 +16,22 @@ class PageController extends Controller
     {
         return view('ourservices'); // ชี้ไปที่ view 'ourservices.blade.php'
     }
+
+    public function ourServices2()
+    {
+        return view('ourservices2');
+    }
+
+    public function ourServices3()
+    {
+        return view('ourservices3');
+    }
+
+    public function ourServices4()
+    {
+        return view('ourservices4');
+    }
+
 
     public function home_em()
     {
@@ -90,6 +107,14 @@ class PageController extends Controller
     {
         return view('home2'); 
     }
+
+
+  
+
+// เปลี่ยน role ของ user id = 1 ให้เป็น admin
+    // $user = User::find(1);
+    // $user->role = 'admin';
+    // $user->save();
 
 
 }

@@ -4,7 +4,15 @@ use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
+
 return Application::configure(basePath: dirname(__DIR__))
+
+    // protected $routeMiddleware = [
+ 
+    // 'role' => \App\Http\Middleware\RoleMiddleware::class,
+    // ];
+
+
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
         api: __DIR__.'/../routes/api.php',
@@ -22,3 +30,6 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withExceptions(function (Exceptions $exceptions) {
         //
     })->create();
+    
+
+    

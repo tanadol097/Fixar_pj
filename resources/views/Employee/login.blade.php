@@ -47,7 +47,7 @@
             </div>
             <div class="col-md-8">
                 <div class="card-body">
-                    <h5 class="card-title text-center">เข้าสู่ระบบผู้ใช้</h5>
+                    <h5 class="card-title text-center">เข้าสู่ระบบพนักงาน</h5>
                     <p class="text-center">กรุณาเข้าสู่ระบบเพื่อดำเนินการต่อ</p>
                     
                     <hr>
@@ -63,7 +63,7 @@
                         </div>
                     @endif
                     
-                    <form action="/login" method="POST">
+                    <form action="/Employee/login" method="POST">
                         @csrf
                         <div class="mb-3">
                             <label for="email" class="form-label">อีเมล</label>
@@ -85,7 +85,7 @@
                     </form>
                     
                     <div class="mt-3 text-center">
-                        <p>ยังไม่มีบัญชีใช่ไหม? <a href="/register">ลงทะเบียน</a></p>
+                        <p>ยังไม่มีบัญชีใช่ไหม? <a href="/Employee/register">ลงทะเบียน</a></p>
                     </div>
                 </div>
             </div>
