@@ -86,6 +86,7 @@
                     
                     <div class="mt-3 text-center">
                         <p>ยังไม่มีบัญชีใช่ไหม? <a href="/register">ลงทะเบียน</a></p>
+                        <p>เข้าสู่ระบบสำหรับช่าง <a href="Employee/login">ลงทะเบียน</a></p>
                     </div>
                 </div>
             </div>

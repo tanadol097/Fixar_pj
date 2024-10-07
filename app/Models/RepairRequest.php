@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class RepairRequest extends Model
 {
+   
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
@@ -21,20 +22,23 @@ class RepairRequest extends Model
         'address',
         'appointment_datetime',
         'service_area',
-        'user_id', // ให้แน่ใจว่ามี user_id อยู่ใน fillable
+        'user_id', // อ้างอิงไปยังผู้ใช้ที่สร้างคำขอ
         'employee_id', // ถ้ามีฟิลด์นี้ด้วย
     ];
 
-    // ความสัมพันธ์กับโมเดล User
+    /**
+     * ความสัมพันธ์กับโมเดล User
+     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // ความสัมพันธ์กับโมเดล Employee
+    /**
+     * ความสัมพันธ์กับโมเดล Employee
+     */
     public function employee()
     {
         return $this->belongsTo(Employee::class);
     }
 }
-

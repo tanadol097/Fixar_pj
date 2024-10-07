@@ -8,6 +8,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\RepairRequestController;
 use App\Http\Controllers\RepairController;
+use App\Http\Controllers\ReportController;
+use App\Http\Controllers\BookingController;
 
 
 
@@ -97,6 +99,7 @@ Route::get('/book-technician', [UserController::class, 'showTechnicians'])->name
 // Route สำหรับหน้าแสดงรายละเอียดการจองช่าง
 Route::get('/bookdetail/{id}', action: [UserController::class, 'bookTechnician'])->name('bookdetail');
 
+
 // Route สำหรับยืนยันการจองช่าง
 Route::post('/confirm-booking', [UserController::class, 'confirmBooking'])->name('confirmBooking');
 
@@ -123,4 +126,19 @@ Route::get('/employee/accepted-requests', [EmployeeController::class, 'showAccep
 
 // Route สำหรับแสดงประวัติการแจ้งซ่อม
 Route::get('/admin/table', [AdminController::class, 'showAcceptedRequests'])->name('admin.repairRequests');
+
+
+
+
+Route::post('/submit-info', [RepairRequestController::class, 'store'])->name('submit-info');
+
+
+Route::post('/report', [ReportController::class, 'store']);
+
+Route::get('/repair-requests', [RepairRequestController::class, 'index'])->name('repair.requests.index');
+// Route::get('/report/history', [ReportController::class, 'history'])->name('report.history');
+Route::get('/repair/history', [ReportController::class, 'repairHistory'])->name('repair.history');
+
+
+
 

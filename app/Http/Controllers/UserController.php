@@ -65,6 +65,7 @@ class UserController extends Controller
             'phone' => 'required|string|max:15',
             'email' => 'required|string|email|max:255|unique:users', // ตรวจสอบในตาราง users
             'password' => 'required|string|min:8|confirmed',
+            'address' => 'required|string|max:255',
         ]);
 
         // สร้างผู้ใช้ใหม่
@@ -74,6 +75,7 @@ class UserController extends Controller
             'phone' => $request->phone,
             'email' => $request->email,
             'password' => Hash::make($request->password), // เข้ารหัสรหัสผ่าน
+            'address' => $request->address,
         ]);
 
         // ส่งค่า success กลับไปยังฟอร์ม
@@ -129,6 +131,24 @@ class UserController extends Controller
 }
 
     
+public function index()
+{
+    $reports = Report::with('user')->get(); // ดึงข้อมูล reports พร้อมกับ user
+
+    return view('report.index', compact('reports')); // ส่งข้อมูลไปยัง view
+}
 
 
+public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'name' => 'required|string',
+        'phone' => 'required|string',
+        'address' => 'required|string', // ต้องตรวจสอบว่ามีการตรวจสอบข้อมูลที่อยู่
+        // ตรวจสอบฟิลด์อื่น ๆ ...
+    ]);
+
+    Report::create($validatedData); // สร้างรายงานใหม่
+    return redirect()->back()->with('success', 'ส่งคำขอแจ้งซ่อมสำเร็จ!');
+}
 }

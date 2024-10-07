@@ -9,26 +9,58 @@
     <style>
         body {
             font-family: 'Kanit', sans-serif;
-            background-color: #f8f9fa; /* พื้นหลัง */
+            background-color: #f8f9fa; /* Background color */
         }
         .header {
-            background-color: #DC5F00; /* สีพื้นหลังของส่วนหัว */
+            background-color: #DC5F00; /* Header background color */
             color: white;
             padding: 20px;
             text-align: center;
         }
         .table-container {
-            background-color: white; /* สีพื้นหลังของตาราง */
+            background-color: white; /* Table background color */
             padding: 20px;
-            border-radius: 10px; /* มุมมน */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* เงา */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Shadow */
         }
         .table th, .table td {
-            vertical-align: middle; /* จัดตำแหน่งแนวตั้งของข้อมูล */
+            vertical-align: middle; /* Vertical alignment of data */
         }
+        
+
+        
+
+        
     </style>
 </head>
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <!-- Navbar Links -->
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/home">หน้าหลัก</a>
+                    </li>
+                
+                <!-- User Button -->
+                <div class="ms-3">
+                  @if(Auth::check())
+                      <span class="navbar-text">{{ Auth::user()->name }}</span>
+                      <form action="{{ route('logout') }}" method="POST" class="d-inline">
+                          @csrf
+                          <button type="submit" class="btn btn-outline-dark">ออกจากระบบ</button>
+                      </form>
+                  @else
+                      <a href="/login" class="btn btn-outline-dark">เข้าสู่ระบบ</a>
+                  @endif
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+
 
     <div class="container mt-5">
         <div class="header">
@@ -43,21 +75,23 @@
                         <th>ประเภทของรถ</th>
                         <th>รายละเอียดปัญหา</th>
                         <th>วันที่นัดหมาย</th>
+                        <th>เวลานัดหมาย</th>
                         <th>สถานะ</th>
                         <th>ดำเนินการ</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($repairRequests as $request)
+                    @foreach ($reports as $report)
                     <tr>
-                        <td>{{ $request->user ? $request->user->name : 'ไม่ระบุ' }}</td>
-                        <td>{{ $request->phone }}</td>
-                        <td>{{ $request->vehicle_type }}</td>
-                        <td>{{ $request->issue_details }}</td>
-                        <td>{{ $request->appointment_datetime }}</td>
-                        <td>{{ $request->status }}</td>
+                        <td>{{ $report->name }}</td> <!-- Display the name -->
+                        <td>{{ $report->phone }}</td> <!-- Display the phone -->
+                        <td>{{ $report->vehicle_type }}</td> <!-- Display the vehicle type -->
+                        <td>{{ $report->issue_details }}</td> <!-- Display the issue details -->
+                        <td>{{ $report->appointment_date }}</td> <!-- Directly display appointment datetime from report -->
+                        <td>{{ $report->appointment_time }}</td>
+                        <td>{{ $report->status }}</td> <!-- Directly display status from report -->
                         <td>
-                            <a href="{{ route('review', $request->id) }}" class="btn btn-success">รีวิว</a> <!-- ปุ่มรีวิว -->
+                            <a href="{{ route('review', $report->id) }}" class="btn btn-success">รีวิว</a> <!-- Review button -->
                         </td>
                     </tr>
                     @endforeach

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAcceptedRequestsTable extends Migration
+return new class extends Migration
 {
     public function up()
     {
@@ -21,4 +21,5 @@ class CreateAcceptedRequestsTable extends Migration
     {
         Schema::dropIfExists('accepted_requests');
     }
-}
+
+};

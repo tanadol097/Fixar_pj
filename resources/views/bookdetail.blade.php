@@ -66,7 +66,7 @@
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-        <a href="home.html" class="navbar-brand">
+        <a href="/bookdetail/home" class="navbar-brand">
             <img src="{{ asset('img/Fixar_logo.png') }}" class="navbar-brand img-fluid-round" style="max-width: 150px;" alt="Fixar Logo">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,7 +76,7 @@
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <!-- Navbar Links -->
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">หน้าหลัก</a>
+                    <a class="nav-link active" aria-current="page" href="home">หน้าหลัก</a>
                 </li>
                 <!-- Shop Dropdown Menu -->
                 <li class="nav-item dropdown">
@@ -86,8 +86,8 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarShop">
                         <li><a class="dropdown-item" href="/services">บริการของเรา</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="Bestseller.html">แจ้งซ่อม</a></li>
-                        <li><a class="dropdown-item" href="New.html">จองช่าง</a></li>
+                        <li><a class="dropdown-item" href="report">แจ้งซ่อม</a></li>
+                        <li><a class="dropdown-item" href="booking">จองช่าง</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">

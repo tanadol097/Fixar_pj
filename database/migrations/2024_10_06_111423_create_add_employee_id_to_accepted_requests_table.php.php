@@ -1,13 +1,11 @@
 <?php
 
-// ตัวอย่าง migration เพื่อเพิ่มฟิลด์ employee_id
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddEmployeeIdToRepairRequestsTable extends Migration
-{
-    public function up()
+return new class extends Migration
+{ public function up()
     {
         Schema::table('repair_requests', function (Blueprint $table) {
             $table->unsignedBigInteger('employee_id')->nullable()->after('service_area');
@@ -24,5 +22,5 @@ class AddEmployeeIdToRepairRequestsTable extends Migration
             $table->dropColumn('employee_id');
         });
     }
-}
 
+};

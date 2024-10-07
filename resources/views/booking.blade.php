@@ -77,7 +77,7 @@
             <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                 <!-- Navbar Links -->
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">หน้าหลัก</a>
+                    <a class="nav-link active" aria-current="page" href="home">หน้าหลัก</a>
                 </li>
                 <!-- Shop Dropdown Menu -->
                 <li class="nav-item dropdown">
@@ -87,8 +87,8 @@
                     <ul class="dropdown-menu" aria-labelledby="navbarShop">
                         <li><a class="dropdown-item" href="/services">บริการของเรา</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="Bestseller.html">แจ้งซ่อม</a></li>
-                        <li><a class="dropdown-item" href="New.html">จองช่าง</a></li>
+                        <li><a class="dropdown-item" href="report">แจ้งซ่อม</a></li>
+                        <li><a class="dropdown-item" href="booking">จองช่าง</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -131,7 +131,7 @@
                         <h5 class="card-title">{{ $technician->name }} {{ $technician->surname }}</h5>
                         <p class="card-text">โทรศัพท์: {{ $technician->phone }}</p>
                         <p class="card-text">อีเมล: {{ $technician->email }}</p>
-                        <p class="card-text">ประเภทการทำงาน: {{ $technician->serviceType->type_name }}</p> <!-- แสดงประเภทการทำงาน -->
+                        {{-- <p class="card-text">ประเภทการทำงาน: {{ $technician->serviceType->type_name }}</p>  --}}
                         <a href="{{ route('bookdetail', $technician->id) }}" class="btn btn-primary">จอง</a>
                     </div>
                 </div>

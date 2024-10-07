@@ -74,6 +74,11 @@
                 </div>
 
                 <div class="mb-3">
+                    <x-label for="address" value="{{ __('ที่อยู่') }}" />
+                    <x-input id="address" class="form-control" type="address" name="address" :value="old('address')" required autocomplete="username" />
+                </div>
+
+                <div class="mb-3">
                     <x-label for="password" value="{{ __('รหัสผ่าน') }}" />
                     <x-input id="password" class="form-control" type="password" name="password" required autocomplete="new-password" />
                 </div>
